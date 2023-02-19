@@ -2,7 +2,7 @@ package classes;
 
 public class Book implements Borrowable {
     private String title;
-    private String author;
+    private Author author;  // Author references Author class
     private String ISBN;
     private String publisher;
     private int numberOfCopies;
@@ -13,7 +13,7 @@ public class Book implements Borrowable {
     }
 
     //  Complete Constructor
-    public Book(String title, String author, String ISBN, String publisher, int numberOfCopies) {
+    public Book(String title, Author author, String ISBN, String publisher, int numberOfCopies) {
         this.title = title;
         this.author = author;
         this.ISBN = ISBN;
@@ -30,11 +30,11 @@ public class Book implements Borrowable {
         this.title = title;
     }
 
-    public String getAuthor() {
+    public Author getAuthor() {
         return author;
     }
 
-    public void setAuthor(String author) {
+    public void setAuthor(Author author) {
         this.author = author;
     }
 
@@ -102,6 +102,7 @@ public class Book implements Borrowable {
 
     @Override
     public Book returnBook(Book book, Patron patron) {
+        // patron.removeBook()
         return book;
     }
 }
