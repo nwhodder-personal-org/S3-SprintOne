@@ -1,2 +1,4 @@
-package classes;public class Library {
+package classes;
+
+public class Library {
 }
