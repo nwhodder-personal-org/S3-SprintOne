@@ -1,9 +1,12 @@
+import classes.Author;
 import classes.Book;
 import classes.Patron;
 
 public class Main {
     public static void main(String[] args) {
-        Book book = new Book("Huck Finn", "Mark Twain", "EXAMPLEISBN001", "yesCorp", 1);
+        Author markTwain = new Author();
+        markTwain.setName("Mark Twain");
+        Book book = new Book("Huck Finn", markTwain, "EXAMPLEISBN001", "yesCorp", 1);
         System.out.println(book);
         Patron nick = new Patron();
         nick.setName("Nick");

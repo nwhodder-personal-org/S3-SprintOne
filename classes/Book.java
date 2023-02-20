@@ -79,7 +79,7 @@ public class Book implements Borrowable {
                 "ISBN: %s%n" +
                 "Publisher: %s%n" +
                 "Copies: %d%n",
-                title, author, ISBN, publisher, numberOfCopies);
+                title, author.getName(), ISBN, publisher, numberOfCopies);
     }
 
     @Override
