@@ -95,14 +95,15 @@ public class Book implements Borrowable {
             }else {
                 book.setStatus(Status.AVAILABLE);
             }
-//            patron.addBook();
+            patron.addBook(book);
         }
         return book;
     }
 
     @Override
     public Book returnBook(Book book, Patron patron) {
-        // patron.removeBook()
+         patron.removeBook(book);
+         this.numberOfCopies++;
         return book;
     }
 }

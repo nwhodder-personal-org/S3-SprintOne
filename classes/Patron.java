@@ -37,10 +37,10 @@ public class Patron {
         this.address = address;
     }
 
-    public ArrayList<Book> getBorrowedBooks() {
-        System.out.printf("List of books borrowed by %s:%n", this.getName());
-        borrowedBooks.forEach((x) -> System.out.println("-" + x.getTitle()));
-        return borrowedBooks;
+    public ArrayList<String> getBorrowedBooks() {
+        ArrayList<String> bookArr = new ArrayList<String>();
+        borrowedBooks.forEach((x) -> bookArr.add(x.getTitle()));
+        return bookArr;
     }
 
     public void setBorrowedBooks(ArrayList<Book> borrowedBooks) {
