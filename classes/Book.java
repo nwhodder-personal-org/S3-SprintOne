@@ -88,9 +88,9 @@ public class Book implements Borrowable {
             System.out.println("Error: Improper amount of books to loan out");
             book.setStatus(Status.CHECKED_OUT);
         } else {
-            numberOfCopies--;
+            book.setNumberOfCopies(book.getNumberOfCopies() - 1);
             System.out.println(book.getTitle() + " has been checked out by " + patron.getName());
-            if (numberOfCopies == 0){
+            if (book.getNumberOfCopies() == 0){
                 book.setStatus(Status.CHECKED_OUT);
             }else {
                 book.setStatus(Status.AVAILABLE);
@@ -103,7 +103,7 @@ public class Book implements Borrowable {
     @Override
     public Book returnBook(Book book, Patron patron) {
          patron.removeBook(book);
-         this.numberOfCopies++;
+         book.numberOfCopies++;
         return book;
     }
 }

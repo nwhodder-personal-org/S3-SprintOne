@@ -12,6 +12,7 @@ public class Main {
         Patron nick = new Patron();
         nick.setName("Nick");
         System.out.println(book.borrowBook(book, nick));
+        System.out.println(book.borrowBook(book2, nick));
         System.out.println(nick.getBorrowedBooks());
         System.out.println(book.returnBook(book, nick));
         System.out.println(nick.getBorrowedBooks());
