@@ -9,9 +9,13 @@ public class Patron {
     private String address;
     private ArrayList<Book> borrowedBooks;
 
+    //  Empty Constructor
+
     public Patron() {
-        this.borrowedBooks = new ArrayList<Book>();
+        this.borrowedBooks = new ArrayList<Book>(); // Initialize empty ArrayList to prevent null
     }
+
+    //  Getters and Setters
 
     public String getName() {
         return name;
@@ -38,7 +42,7 @@ public class Patron {
     }
 
     public ArrayList<String> getBorrowedBooks() {
-        ArrayList<String> bookArr = new ArrayList<String>();
+        ArrayList<String> bookArr = new ArrayList<>();
         borrowedBooks.forEach((x) -> bookArr.add(x.getTitle()));
         return bookArr;
     }
@@ -46,6 +50,19 @@ public class Patron {
     public void setBorrowedBooks(ArrayList<Book> borrowedBooks) {
         this.borrowedBooks = borrowedBooks;
     }
+
+    // ToString method
+
+    @Override
+    public String toString() {
+        return String.format(
+                "Patron Name: %s%n" +
+                        "DoB: %s%n" +
+                        "Address: %s%n",
+                this.getName(), this.getDateOfBirth(), this.getAddress());
+    }
+
+    // Add/Remove borrowed books
 
     public ArrayList<Book> addBook(Book book){
         this.borrowedBooks.add(book);

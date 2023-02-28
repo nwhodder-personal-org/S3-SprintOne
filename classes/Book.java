@@ -82,9 +82,11 @@ public class Book implements Borrowable {
                 title, author.getName(), ISBN, publisher, numberOfCopies);
     }
 
+    //  Methods for borrowing and returning borrowed books
+
     @Override
     public Book borrowBook(Book book, Patron patron) {
-        if (!(book.getNumberOfCopies() > 0)){
+        if (!(book.getNumberOfCopies() > 0)){   //  Only loan out book if there is enough copies
             System.out.println("Error: Improper amount of books to loan out");
             book.setStatus(Status.CHECKED_OUT);
         } else {
@@ -102,8 +104,12 @@ public class Book implements Borrowable {
 
     @Override
     public Book returnBook(Book book, Patron patron) {
-         patron.removeBook(book);
-         book.numberOfCopies++;
+        if (patron.getBorrowedBooks().contains(book.getTitle())){   // Only return book if it is actually
+            patron.removeBook(book);                               //  being borrowed
+            book.setNumberOfCopies(book.getNumberOfCopies() + 1);
+        } else {
+            System.out.printf("Error: %s hasn't borrowed %s%n", patron.getName(), book.getTitle());
+        }
         return book;
     }
 }

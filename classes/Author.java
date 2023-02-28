@@ -8,6 +8,14 @@ public class Author {
     private String name;
     private LocalDate dateOfBirth;
 
+    //  Empty Constructor
+
+    public Author() {
+        this.booksWrittenList = new ArrayList<>();  //  Initialize empty ArrayList to prevent null
+    }
+
+    //  Getters/Setters
+
     public ArrayList<Book> getBooksWrittenList() {
         return booksWrittenList;
     }
@@ -31,6 +39,8 @@ public class Author {
     public void setDateOfBirth(int year, int month, int day) {
         this.dateOfBirth = LocalDate.of(year, month, day);
     }
+
+    // Add book to list of written books
 
     public ArrayList<Book> addBook(Book book){
         this.booksWrittenList.add(book);
