@@ -84,32 +84,46 @@ public class Book implements Borrowable {
 
     //  Methods for borrowing and returning borrowed books
 
-    @Override
     public Book borrowBook(Book book, Patron patron) {
-        if (!(book.getNumberOfCopies() > 0)){   //  Only loan out book if there is enough copies
+        return this.borrowBook(book, patron, 1);
+    }
+
+    @Override
+    public Book borrowBook(Book book, Patron patron, int qty) {
+        if (book.getNumberOfCopies() < qty){
             System.out.println("Error: Improper amount of books to loan out");
             book.setStatus(Status.CHECKED_OUT);
         } else {
-            book.setNumberOfCopies(book.getNumberOfCopies() - 1);
-            System.out.println(book.getTitle() + " has been checked out by " + patron.getName());
+            book.setNumberOfCopies(book.getNumberOfCopies() - qty);
+            System.out.println(book.getTitle() + " x" + qty + " has been checked out by " + patron.getName());
             if (book.getNumberOfCopies() == 0){
                 book.setStatus(Status.CHECKED_OUT);
             }else {
                 book.setStatus(Status.AVAILABLE);
             }
-            patron.addBook(book);
+            for (int i = 0; i < qty; i++) {
+                patron.addBook(book);
+            }
         }
         return book;
     }
 
-    @Override
     public Book returnBook(Book book, Patron patron) {
-        if (patron.getBorrowedBooks().contains(book.getTitle())){   // Only return book if it is actually
-            patron.removeBook(book);                               //  being borrowed
-            book.setNumberOfCopies(book.getNumberOfCopies() + 1);
-        } else {
-            System.out.printf("Error: %s hasn't borrowed %s%n", patron.getName(), book.getTitle());
+        return this.returnBook(book, patron, 1);
+    }
+
+    @Override
+    public Book returnBook(Book book, Patron patron, int qty) {
+        for (int i = 0; i < qty; i++) {
+            if (patron.getBorrowedBooks().contains(book.getTitle())){
+                patron.removeBook(book);
+                book.setNumberOfCopies(book.getNumberOfCopies() + 1);
+            } else {
+                System.out.printf("Error: %s only has %d copy/copies of %s%n", patron.getName(),(qty - i), book.getTitle());
+                break;
+            }
         }
+
         return book;
     }
 }

@@ -41,12 +41,12 @@ public class Main {
         library.addPatron(nick);
         library.addPatron(kennedy);
         library.borrowBook(fahrenheit451, nick);
-        library.borrowBook(fahrenheit451, kennedy); // Should log error that no more copies remain
+        library.borrowBook(fahrenheit451, kennedy, 1); // Should log error that no more copies remain
         System.out.println("Nick's Borrowed Books:\n" + nick.getBorrowedBooks() + "\n");
         System.out.println("Kennedy's Borrowed Books:\n" + kennedy.getBorrowedBooks() + "\n");
         System.out.println("Patron List:\n" + library.getPatronList() + "\n");
         System.out.println("List of Books in Library:\n" + library.getBooksList() + "\n");
-        System.out.println(library.returnBook(fahrenheit451, nick)); // Set Fahrenheit451 back to 1 copy
+        System.out.println(library.returnBook(fahrenheit451, nick, 2)); // Set Fahrenheit451 back to 1 copy
 
         // Test searching books through various methods
         System.out.println(library.searchBooks("Mark Twain")); // return both Huck Finn and Tom Sawyer
